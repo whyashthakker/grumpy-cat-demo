@@ -1,0 +1,431 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+}
+
+h1 {
+    color: #4a5568;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cat-container {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.cat {
+    width: 250px;
+    height: 280px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.cat:hover {
+    transform: scale(1.05);
+}
+
+.cat:active {
+    transform: scale(0.95);
+}
+
+.cat-face {
+    width: 180px;
+    height: 200px;
+    background: linear-gradient(135deg, #8B7355 0%, #A0826D 50%, #8B7355 100%);
+    border-radius: 45% 45% 50% 50%;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    border: 3px solid #6B5644;
+}
+
+/* Add fur texture */
+.cat-face::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(139, 115, 85, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 80% 35%, rgba(139, 115, 85, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 40% 60%, rgba(139, 115, 85, 0.3) 1px, transparent 1px);
+    background-size: 15px 15px;
+    border-radius: 45% 45% 50% 50%;
+    pointer-events: none;
+}
+
+.cat-ears {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 80px;
+}
+
+.ear {
+    position: absolute;
+    width: 60px;
+    height: 70px;
+    background: linear-gradient(135deg, #8B7355 0%, #A0826D 100%);
+    border-radius: 80% 20% 0% 0%;
+    top: 0;
+    border: 3px solid #6B5644;
+    border-bottom: none;
+}
+
+.left-ear {
+    left: 10px;
+    transform: rotate(-25deg);
+}
+
+.right-ear {
+    right: 10px;
+    transform: rotate(25deg);
+    border-radius: 20% 80% 0% 0%;
+}
+
+.ear::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background: linear-gradient(135deg, #D4A574 0%, #C9A070 100%);
+    border-radius: 80% 20% 0% 0%;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.right-ear::before {
+    border-radius: 20% 80% 0% 0%;
+}
+
+/* White fur patches on face */
+.cat-face::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 90px;
+    background: radial-gradient(ellipse at center, #F5E6D3 0%, #E8D4BE 60%, transparent 100%);
+    border-radius: 40% 40% 50% 50%;
+    z-index: 1;
+}
+
+.cat-eyes {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 50px;
+    z-index: 2;
+}
+
+.eye {
+    position: absolute;
+    width: 40px;
+    height: 45px;
+    background: linear-gradient(135deg, #FFE5CC 0%, #FFFFFF 50%, #FFE5CC 100%);
+    border-radius: 60% 40% 50% 50%;
+    top: 0;
+    border: 2px solid #8B7355;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.left-eye {
+    left: 15px;
+    transform: rotate(-5deg);
+}
+
+.right-eye {
+    right: 15px;
+    transform: rotate(5deg);
+}
+
+.pupil {
+    position: absolute;
+    width: 12px;
+    height: 28px;
+    background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: blink 4s infinite;
+    box-shadow: 0 0 8px rgba(0, 200, 100, 0.5);
+}
+
+/* Add highlight to eyes */
+.pupil::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    top: 6px;
+    left: 3px;
+}
+
+@keyframes blink {
+    0%, 90%, 100% { height: 28px; }
+    93%, 96% { height: 2px; }
+}
+
+.cat-nose {
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 15px;
+    background: linear-gradient(135deg, #D4756E 0%, #E8968F 100%);
+    border-radius: 40% 40% 50% 50%;
+    border: 2px solid #A85D57;
+    z-index: 2;
+}
+
+/* Add nostrils */
+.cat-nose::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 3px;
+    width: 4px;
+    height: 6px;
+    border-left: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+}
+
+.cat-nose::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 3px;
+    width: 4px;
+    height: 6px;
+    border-right: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+}
+
+.cat-mouth {
+    position: absolute;
+    top: 145px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 40px;
+    z-index: 2;
+}
+
+/* Vertical line from nose to mouth */
+.cat-mouth::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 8px;
+    background: #A85D57;
+    border-radius: 1px;
+}
+
+.mouth-line {
+    position: absolute;
+    width: 28px;
+    height: 3px;
+    background: #6B5644;
+    border-radius: 2px;
+    top: 8px;
+}
+
+.left-line {
+    left: 0px;
+    transform: rotate(-25deg);
+    transform-origin: right center;
+}
+
+.right-line {
+    right: 0px;
+    transform: rotate(25deg);
+    transform-origin: left center;
+}
+
+/* Whiskers */
+.whiskers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.whisker {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, #2d2d2d 0%, transparent 100%);
+    border-radius: 1px;
+    top: 120px;
+}
+
+.whisker-left-top {
+    left: -50px;
+    width: 60px;
+    transform: rotate(-15deg);
+    transform-origin: right center;
+}
+
+.whisker-left-middle {
+    left: -55px;
+    width: 65px;
+    top: 130px;
+    transform: rotate(-5deg);
+    transform-origin: right center;
+}
+
+.whisker-left-bottom {
+    left: -50px;
+    width: 60px;
+    top: 140px;
+    transform: rotate(5deg);
+    transform-origin: right center;
+}
+
+.whisker-right-top {
+    right: -50px;
+    width: 60px;
+    background: linear-gradient(270deg, #2d2d2d 0%, transparent 100%);
+    transform: rotate(15deg);
+    transform-origin: left center;
+}
+
+.whisker-right-middle {
+    right: -55px;
+    width: 65px;
+    top: 130px;
+    background: linear-gradient(270deg, #2d2d2d 0%, transparent 100%);
+    transform: rotate(5deg);
+    transform-origin: left center;
+}
+
+.whisker-right-bottom {
+    right: -50px;
+    width: 60px;
+    top: 140px;
+    background: linear-gradient(270deg, #2d2d2d 0%, transparent 100%);
+    transform: rotate(-5deg);
+    transform-origin: left center;
+}
+
+/* Eyebrows for grumpy look */
+.eye::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 35px;
+    height: 4px;
+    background: #6B5644;
+    border-radius: 2px;
+}
+
+.left-eye::before {
+    transform: translateX(-50%) rotate(15deg);
+}
+
+.right-eye::before {
+    transform: translateX(-50%) rotate(-15deg);
+}
+
+.response {
+    margin: 2rem 0;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.response p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e53e3e;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.instructions {
+    margin-top: 1rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Grumpy expression animation */
+.cat.grumpy .cat-eyes {
+    transform: translateX(-50%) rotate(-5deg);
+}
+
+.cat.grumpy .left-eye {
+    transform: rotate(-10deg);
+}
+
+.cat.grumpy .right-eye {
+    transform: rotate(10deg);
+}
+
+.cat.grumpy .cat-mouth {
+    transform: translateX(-50%) rotate(5deg);
+}
+
+.cat.grumpy .left-line {
+    transform: rotate(-30deg);
+}
+
+.cat.grumpy .right-line {
+    transform: rotate(30deg);
+}
